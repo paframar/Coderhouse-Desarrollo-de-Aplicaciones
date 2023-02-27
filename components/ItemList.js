@@ -3,10 +3,22 @@ import { StyleSheet, Text, View , Modal, Button, TouchableOpacity} from 'react-n
 const ItemList = ({title, isSelected, onPress}) => {
   return (
     <TouchableOpacity
+        style={[styles.container, isSelected && styles.selectedContainer]}  
         onPress={onPress}
     >
-        <View style={[styles.container, isSelected && styles.selectedContainer]}>
+        <View>
             <Text style={[styles.text, isSelected && styles.selectedText]}> {title} </Text>
+        </View>
+
+        <View style={[styles.buttonsContaner]}>
+            <Button
+                title={'Edit'}
+                style={styles.button}
+            />
+            <Button
+                title={'Delete'}
+                style={styles.button}
+            />
         </View>
     </TouchableOpacity>
   )
@@ -18,6 +30,17 @@ const styles = StyleSheet.create({
     borderRadius:8,
     borderColor:'#6e3b6e',
     backgroundColor:'#6e3b6e',
+    margin:5,
+    flexDirection:'row',
+    justifyContent:'space-around',
+  },
+  buttonsContaner:{ 
+    flexDirection:'row',
+    justifyContent:'center',
+    alignItems:'center',
+  },
+  button:{
+    marginLeft:10,
   },
   text:{
     color:'white',
@@ -34,7 +57,8 @@ const styles = StyleSheet.create({
   selectedContainer: {
     backgroundColor: 'white',
     borderColor: '#6e3b6e',
-  }
+  },
+
 
 })
 
