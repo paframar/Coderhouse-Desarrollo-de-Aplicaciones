@@ -1,27 +1,50 @@
-import { StyleSheet, Text, View , Modal, Button, TouchableOpacity} from 'react-native';
+import { StyleSheet, Text, View , TouchableOpacity} from 'react-native';
+import { Button, IconButton, Icon } from "@react-native-material/core";
+import { useState } from 'react';
 
-const ItemList = ({title, isSelected, onPress}) => {
-  return (
-    <TouchableOpacity
-        style={[styles.container, isSelected && styles.selectedContainer]}  
-        onPress={onPress}
-    >
-        <View>
-            <Text style={[styles.text, isSelected && styles.selectedText]}> {title} </Text>
-        </View>
 
-        <View style={[styles.buttonsContaner]}>
-            <Button
-                title={'Edit'}
-                style={styles.button}
-            />
-            <Button
-                title={'Delete'}
-                style={styles.button}
-            />
-        </View>
-    </TouchableOpacity>
-  )
+
+
+const ItemList = ({id, title, isSelected, isChecked, onPressItem, onPressChecked}) => {
+
+    return (
+        <TouchableOpacity
+            style={[styles.container, isSelected && styles.selectedContainer]}  
+            onPress={onPressItem}
+        >
+            <View style={styles.titleContainer}>
+                <Text style={[styles.title, isSelected && styles.selectedTitle]}> {title} </Text>
+            </View>
+
+            <View style={[styles.buttonsContaner]}>
+                <View style={{ flexDirection:'row'}}>
+                    <IconButton
+                        style={[styles.iconButton]}
+                        icon={()=><Icon name="pencil" size={32} color={'#6e3b6e'}/>}
+                        disabled={!isSelected}
+                    />
+                    <IconButton
+                        style={[styles.iconButton]}
+                        icon={()=><Icon name="delete" size={32} color={'#6e3b6e'}/>}
+                        disabled={!isSelected}
+                    />
+                    <IconButton
+                        style={[styles.iconButton]}
+                        icon={()=>(
+                            <Icon
+                                name={isChecked ? 'checkbox-marked-circle' : 'circle'} 
+                                size={32} 
+                                color={isSelected ? '#6e3b6e' : 'white'}
+                            />
+                        )}
+                        onPress={(id)=>{onPressChecked(id)}}
+                    />
+                </View>
+
+
+            </View>
+        </TouchableOpacity>
+    )
 }
 
 const styles = StyleSheet.create({
@@ -30,29 +53,32 @@ const styles = StyleSheet.create({
     borderRadius:8,
     borderColor:'#6e3b6e',
     backgroundColor:'#6e3b6e',
-    margin:5,
+    marginHorizontal:5,
+    marginTop:20,
     flexDirection:'row',
-    justifyContent:'space-around',
+    justifyContent:'space-between',
+  },
+  titleContainer:{
+    width: '55%',
   },
   buttonsContaner:{ 
+    width: '40%',
     flexDirection:'row',
     justifyContent:'center',
     alignItems:'center',
+    marginRight:30,
   },
-  button:{
-    marginLeft:10,
+  iconButton:{
+
   },
-  text:{
+  title:{
     color:'white',
     padding:20,
-    fontSize: 18,
+    fontSize: 16,
+    fontWeight:'800',
   },
-  selectedText:{
+  selectedTitle:{
     color:'#6e3b6e',
-  },
-  selected: {
-    backgroundColor: '#fff',
-    borderColor: 'blue',
   },
   selectedContainer: {
     backgroundColor: 'white',
