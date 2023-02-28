@@ -5,7 +5,7 @@ import ItemList from './components/ItemList'
 import { IconComponentProvider, Icon, IconButton } from "@react-native-material/core";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import ConfirmModal from './components/ConfirmModal';
-
+import colors from './utils/colors'
 
 export default function App() {
 
@@ -175,7 +175,6 @@ export default function App() {
     <IconComponentProvider IconComponent={MaterialCommunityIcons}>
 
         <View style={styles.container}>
-
           <ConfirmModal
             title={modalParams.title}
             action={modalParams.action}
@@ -210,13 +209,13 @@ export default function App() {
                 disabled={disabledAddButton}
                 style={[styles.button, disabledAddButton && styles.disabledButton]}
                 onPress={addNewItem}
-                icon={props=><Icon name="plus" size={32} color={'white'}/>}
+                icon={props=><Icon name="plus" size={32} color={colors.white}/>}
               />
               <IconButton
                 disabled={disabledEmptyButton}
                 style={[styles.button, disabledEmptyButton && styles.disabledButton]}
                 onPress={clearItems}
-                icon={props=><Icon name="delete-empty" size={32} color={'white'}/>}
+                icon={props=><Icon name="delete-empty" size={32} color={colors.white}/>}
               />
             </View>
             
@@ -257,11 +256,11 @@ const styles = StyleSheet.create({
   },
   button:{
     width: 40,
-    backgroundColor: '#6e3b6e',
+    backgroundColor: colors.purple1,
     height:40,
   },
   disabledButton:{
-    backgroundColor:'#b0a1b0',
+    backgroundColor:colors.purple3,
   },
   buttonsContainer:{
     width:'35%',
@@ -269,8 +268,10 @@ const styles = StyleSheet.create({
     justifyContent:'space-around',
   },
   textInput:{
-    fontSize: 24,
-    borderColor:'grey',
+    color: colors.purple1,
+    fontWeight:'600',
+    fontSize: 18,
+    borderColor:colors.purple1,
     borderBottomWidth: 4,
     backgroundColor:'transparent',
     borderRadius:8,
@@ -278,7 +279,8 @@ const styles = StyleSheet.create({
     width:'65%',
   },
   disabledTextInput:{
-    backgroundColor:'#b0a1b0',
+    borderColor:colors.purple2,
+    backgroundColor:colors.purple3,
   },
   flatListContainer:{
     width: '100%', 

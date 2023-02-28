@@ -1,5 +1,6 @@
 import { StyleSheet, Text, View , Modal} from 'react-native';
 import { Button, IconButton, Icon } from "@react-native-material/core";
+import colors from '../utils/colors'
 
 const ConfirmModal = ({title, message, action, visible, onConfirm, onCancel, actionValue}) => {
     return (
@@ -17,7 +18,7 @@ const ConfirmModal = ({title, message, action, visible, onConfirm, onCancel, act
                     <View style={styles.buttonsContainer}>
                         { action === 'edit'&& <IconButton
                             style={[styles.iconButton]}
-                            icon={()=><Icon name="arrow-left" size={32} color={'#6e3b6e'}/>}
+                            icon={()=><Icon name="arrow-left" size={32} color={colors.purple1}/>}
                             onPress={()=>{
                                 onCancel()
                             }}
@@ -25,7 +26,7 @@ const ConfirmModal = ({title, message, action, visible, onConfirm, onCancel, act
                         }
                         <IconButton
                             style={[styles.iconButton]}
-                            icon={()=><Icon name="check" size={32} color={'#6e3b6e'}/>}
+                            icon={()=><Icon name="check" size={32} color={colors.purple1}/>}
                             onPress={()=>{
                                 onConfirm(action, actionValue)
                                 onCancel()
@@ -33,7 +34,7 @@ const ConfirmModal = ({title, message, action, visible, onConfirm, onCancel, act
                         />
                         <IconButton
                             style={[styles.iconButton]}
-                            icon={()=><Icon name="cancel" size={32} color={'#6e3b6e'}/>}
+                            icon={()=><Icon name="cancel" size={32} color={colors.purple1}/>}
                             onPress={()=>{
                                 if (action === 'edit'){
                                     onCancel('cancel_edit')
@@ -59,13 +60,13 @@ const styles = StyleSheet.create({
     },
     contentContainer:{
         borderWidth: 3,
-        borderColor: '#6e3b6e',
+        borderColor: colors.purple1,
         borderRadius: 8,
         justifyContent: 'center',
         alignItems: 'center',
         width: '70%',
         height: '20%',
-        backgroundColor:'white',
+        backgroundColor:colors.white,
     },
     textsContainer:{
         justifyContent: 'center',
