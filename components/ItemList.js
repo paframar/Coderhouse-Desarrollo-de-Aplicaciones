@@ -22,6 +22,7 @@ const ItemList = ({id, title, isSelected, isChecked, onPressItem, onPressChecked
                       style={[styles.title, isSelected && styles.selectedTitle]}
                       value={editedTitle}
                       onChangeText={(val)=> setEditedTitle(val)}
+                      onSubmitEditing={()=>onConfirmEdit(editedTitle)}
                     />
                   : <Text style={[styles.title, isSelected && styles.selectedTitle, isDisabled && styles.disabledTitle]}> {title} </Text>
                 }
@@ -45,7 +46,7 @@ const ItemList = ({id, title, isSelected, isChecked, onPressItem, onPressChecked
                       : <View style={{ flexDirection:'row'}}>
                           <IconButton
                               style={[styles.iconButton]}
-                              icon={()=><Icon name="pencil" size={32} color={'#6e3b6e'}/>}
+                              icon={()=><Icon name="pencil" size={32} color={isDisabled ? '#8e5d8e': (isSelected ? '#6e3b6e' : 'white')}/>}
                               disabled={!isSelected}
                               onPress={(id)=>{
                                 setEditedTitle(title)
@@ -54,7 +55,7 @@ const ItemList = ({id, title, isSelected, isChecked, onPressItem, onPressChecked
                           />
                           <IconButton
                               style={[styles.iconButton]}
-                              icon={()=><Icon name="delete" size={32} color={'#6e3b6e'}/>}
+                              icon={()=><Icon name="delete" size={32} color={isDisabled ? '#8e5d8e': (isSelected ? '#6e3b6e' : 'white')}/>}
                               disabled={!isSelected}
                               onPress={(id)=>{onPressDelete(id)}}
                           />
@@ -67,7 +68,17 @@ const ItemList = ({id, title, isSelected, isChecked, onPressItem, onPressChecked
                               <Icon
                                   name={isChecked ? 'checkbox-marked-circle' : 'circle'} 
                                   size={32} 
-                                  color={isSelected ? '#6e3b6e' : 'white'}
+                                  color={
+                                    isEditActive 
+                                      ? '#b0a1b0'
+                                      : (
+                                        isSelected
+                                          ? '#6e3b6e'
+                                          : (isDisabled ? '#8e5d8e': 'white')
+                                      )
+                                  }
+                                      // '#b0a1b0'
+                                      // '#6e3b6e'
                               />
                           )}
                           onPress={(id)=>{onPressChecked(id)}}
@@ -123,7 +134,7 @@ const styles = StyleSheet.create({
     borderColor: '#6e3b6e',
   },
   disabledTitle:{
-    color:'#6e3b6e',
+    color:'#8e5d8e',
   },
 
 
